@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 
 import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid'
@@ -12,11 +12,17 @@ import Radio from '@mui/material/Radio'
 
 import FileImg from "./assets/file.png"
 
-function Upload(props) {
+function Upload({activeFileList}) {
 
-    const [filesArray, setFilesArray] = React.useState(props.activeFileList)
-    const [uploadCardOpen, setUploadCardOpen] = React.useState(filesArray=='[]' ? true : false)
-    const [previewCardOpen, setPreviewCardOpen] = React.useState(filesArray=='[]' ? false : true)
+    const [filesArray, setFilesArray] = useState([])
+    const [uploadCardOpen, setUploadCardOpen] = useState(true)
+    const [previewCardOpen, setPreviewCardOpen] = useState(true)
+
+    useEffect(() => {
+        if (activeFileList !== []) {
+            setFilesArray(activeFileList)
+        }
+    }, [activeFileList])
 
     function toggleUpload() {
         setUploadCardOpen(prevState => !prevState)

@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 
 import CssBaseline from '@mui/material/CssBaseline'
 import IconButton from '@mui/material/IconButton'
@@ -36,11 +36,11 @@ let fileList = [ /* Imitating file list from API */
 
 function App() {
 
-  const [activeComponent, setActiveComponent] = React.useState("Upload")
-  const [activeFileList, setActiveFileList] = React.useState([])
+  const [activeComponent, setActiveComponent] = useState("Upload")
+  const [activeFileList, setActiveFileList] = useState([])
 
-  React.useEffect(() => {
-    if (fileList) {
+  useEffect(() => {
+    if (fileList !== []) {
       setActiveFileList(fileList)
     }
   }, [])
